@@ -9,8 +9,20 @@ import {
   TouchableOpacity,
   Alert,
 } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
+import {network} from '../helper/hooks/network';
+import {useNavigation} from '@react-navigation/native';
 
 const demoScreen3 = () => {
+  const navigation = useNavigation();
+  // Subscribe
+  // const unsubscribe = NetInfo.addEventListener(state => {
+  //   console.log('Connection type', state.type);
+  //   console.log('Is connected?', state.isConnected);
+  // });
+
+  // // Unsubscribe
+  // unsubscribe();
   const [amountValue, setAmountValue] = useState('');
   const stripe = useStripe();
   const buy = async () => {
@@ -78,6 +90,11 @@ const demoScreen3 = () => {
             marginTop: 20,
           }}>
           <Text>Buy</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{backgroundColor: 'red', marginTop: 20, alignSelf: 'center'}}
+          onPress={() => navigation?.navigate('demoScreen4')}>
+          <Text>navigation</Text>
         </TouchableOpacity>
       </SafeAreaView>
     </StripeProvider>
